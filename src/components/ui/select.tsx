@@ -111,7 +111,7 @@ const SelectContent = React.forwardRef<
       if (!searchQuery) return children
       return React.Children.toArray(children).filter((child) => {
         if (!React.isValidElement(child)) return true
-        const childText = child.props?.children?.toString()?.toLowerCase() || ""
+        const childText = String((child.props as { children?: React.ReactNode })?.children ?? "").toLowerCase()
         return childText.includes(searchQuery.toLowerCase())
       })
     }, [children, searchQuery])
