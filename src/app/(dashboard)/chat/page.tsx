@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import { useState, useRef, useEffect, useCallback, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import ReactMarkdown from "react-markdown"
@@ -233,7 +234,8 @@ function CodeBlock({ className, children, language: lang }: { className?: string
       if (typeof node === "string") text += node
       else if (typeof node === "number") text += String(node)
       else if (React.isValidElement(node)) {
-        React.Children.forEach(node.props.children, extract)
+        const element = node as React.ReactElement<{ children?: React.ReactNode }>
+        React.Children.forEach(element.props.children, extract)
       }
     }
     React.Children.forEach(children, extract)
