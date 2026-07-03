@@ -122,7 +122,7 @@ const CommandGroup = React.forwardRef<HTMLDivElement, CommandGroupProps>(
 CommandGroup.displayName = "CommandGroup"
 
 interface CommandItemProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect"> {
   onSelect?: (value: string) => void
   value?: string
   shortcut?: string
